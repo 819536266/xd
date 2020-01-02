@@ -1,0 +1,32 @@
+server:
+  port: 9102
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip: 192.168.5.28
+    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lowerCaseServiceId: true
+      routes:
+      - id: auth-service
+        uri: lb://auth-service
+        predicates:
+        - Path=/api/auth/**
+        filters:
+        - SwaggerHeaderFilter
+        - StripPrefix=2
+      - id: user-service
+        uri: lb://user-service
+        predicates:
+        - Path=/api/user/**
+        filters:
+        - SwaggerHeaderFilter
+        - StripPrefix=2
+      enabled: true
+

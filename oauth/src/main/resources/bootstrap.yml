@@ -1,0 +1,30 @@
+server:
+  port: 9101
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip: 192.168.5.28
+  datasource:
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xd?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+  #开启fegin多个接口注册
+  main:
+    allow-bean-definition-overriding: true
+
+# jwt加密配置
+encrypt:
+  key-store:
+    location: classpath:/jwt.jks
+    alias: xd
+    password: 123456
+    type: jks
