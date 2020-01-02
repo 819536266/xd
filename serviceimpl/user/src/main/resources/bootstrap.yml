@@ -1,44 +1,11 @@
-server:
-  port: 9200
 spring:
   application:
     name: user-service
-  datasource:
-    password: root
-    username: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/xd?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
   cloud:
     nacos:
-      discovery:
+      config:
+        #dev 使用namespace
+        #   namespace: 9e4555a4-3f8b-4976-983b-cb01ca0449e9 pro
+        namespace: 46ed873f-6648-40df-91a7-d69dcc888885
+        file-extension: yml
         server-addr: 127.0.0.1:8848
-        ip: 192.168.5.28
-  redis:
-    host: localhost
-    port: 6379
-    password: 123456
-  jpa:
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #生成表类型
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          public-key-location: publickey.txt
-
-mybatis-plus:
-  type-aliases-package: com.xd.user.api.entity.*
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath*:/mapper/*.xml
-swagger :
-  title : swaggerAPI接口文档
-  description: swagger
-  version: v1
-  termsOfServiceUrl: http://localhost:8200/
-  name: hbx
-  url:
-  email: 15290560805@163.com
